@@ -1,0 +1,44 @@
+.user-profile {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f4f4f4;
+  }
+  
+  .user-profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .user-profile-name {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .user-profile-email {
+    margin: 0;
+    color: #888;
+  }
+  
+  .user-profile-details {
+    margin-bottom: 20px;
+  }
+  
+  .user-profile-detail {
+    margin-bottom: 10px;
+  }
+  
+  .user-profile-label {
+    font-weight: bold;
+  }
+  
+  .user-profile-bio {
+    margin: 0;
+  }
+
+
+
+  
+  
