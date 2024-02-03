@@ -16,7 +16,7 @@ import PublikoPuneUser from './PublikoPuneUser'
 
 
 function PublikoPunen() {
-    const [paraqitProvimin, setParaqitProvimin] = useState([])
+    const [publikopune, setPublikoPune] = useState([])
     
     const[role,setRole]=useState('')
     const navigate=useNavigate()
@@ -36,13 +36,13 @@ function PublikoPunen() {
 
     useEffect(()=> {
         axios.get('http://localhost:8081/publikoPunen')
-        .then(res => setParaqitProvimin(res.data))
+        .then(res => setPublikoPune(res.data))
          .catch(err => console.log(err)); 
          },[])
 
-    const handleDelete = async (idProvimi) => { 
+    const handleDelete = async (idPublikimi) => { 
         try { 
-         await axios.delete('http://localhost:8081/publikoPunen/'+idProvimi)
+         await axios.delete('http://localhost:8081/publikoPunen/'+idPublikimi)
          window.location.reload() 
         }catch(err) {  
          console.log(err);   

@@ -51,7 +51,7 @@ const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "signup",
+    database: "job application system",
     port:4306
 });
 
@@ -190,15 +190,15 @@ app.post('/signup', (req, res) => {
 
 
                                                       app.get("/publikoPunen", (req, res) => {
-                                                        const sql = "SELECT * FROM provimi p INNER JOIN login l ON p.studID=l.id";
+                                                        const sql = "SELECT * FROM publikopune p INNER JOIN login l ON p.studID=l.id";
                                                          db.query(sql, (err, data) => { 
                                                           if(err) return res.json("Error");
                                                            return res.json(data);    });});
                                                               app.post('/createPunen', (req, res) => {
-                                                                  const sql = "INSERT INTO provimi (lenda, emriProfesorit,studID) VALUES (?)";
+                                                                  const sql = "INSERT INTO publikopune (departamenti, profesioni,studID) VALUES (?)";
                                                                   const values = [ 
-                                                                      req.body.lenda, 
-                                                                      req.body.emriProfesorit ,
+                                                                      req.body.departamenti, 
+                                                                      req.body.profesioni ,
                                                                       req.body.idStud
                                                                   ]    
                                                                   db.query(sql, [values], (err, data) => { 
@@ -206,21 +206,21 @@ app.post('/signup', (req, res) => {
                                                                       return res.json(data);   
                                                                    })})
                                                   
-                                                       app.put('/update/:idProvimi', (req, res) => {
-                                                        const sql = "UPDATE provimi set lenda = ?, emriProfesorit = ?,nota = ? WHERE idProvimi = ?";
+                                                       app.put('/update/:idPublikimi', (req, res) => {
+                                                        const sql = "UPDATE publikopune set departamenti = ?, profesioni = ?,kerkesa = ? WHERE idPublikimi = ?";
                                                         const values = [ 
-                                                                 req.body.lenda,
-                                                                 req.body.emriProfesorit,
-                                                                 req.body.nota
+                                                                 req.body.departamenti,
+                                                                 req.body.profesioni,
+                                                                 req.body.kerkesa
                                                                    ] 
-                                                           const idProvimi = req.params.idProvimi;
-                                                            db.query(sql, [...values, idProvimi], (err, data) => {
+                                                           const idPublikimi = req.params.idPublikimi;//idProvimi
+                                                            db.query(sql, [...values, idPublikimi], (err, data) => {
                                                                               if(err) return res.json("Error");
                                                                                return res.json(data);    })})
-                                                                        app.delete('/publikoPunen/:idProvimi', (req, res) => { 
-                                                                          const sql = "DELETE FROM provimi WHERE idProvimi = ?";
-                                                                          const idProvimi = req.params.idProvimi;
-                                                                          db.query(sql, [idProvimi], (err, data) => { 
+                                                                        app.delete('/publikoPunen/:idPublikimi', (req, res) => { 
+                                                                          const sql = "DELETE FROM publikopune WHERE idPublikimi = ?";
+                                                                          const idPublikimi = req.params.idPublikimi;
+                                                                          db.query(sql, [idPublikimi], (err, data) => { 
                                                                               if(err) return res.json("Error"); 
                                                                                return res.json(data); 
                                                                             })})
@@ -234,15 +234,15 @@ app.post('/signup', (req, res) => {
 
 
                 app.get("/aplikoPerPune", (req, res) => {
-                    const sql = "SELECT * FROM semestri s INNER JOIN login l ON s.idStudent=l.id";
+                    const sql = "SELECT * FROM aplikoperpune s INNER JOIN login l ON s.idStudent=l.id";
                      db.query(sql, (err, data) => { 
                       if(err) return res.json("Error");
                        return res.json(data);    });});
-                          app.post('/createSemestri', (req, res) => {
-                              const sql = "INSERT INTO semestri (lokacioni,semestri,orari,idStudent) VALUES (?)";
+                          app.post('/createAplikoPerPune', (req, res) => {
+                              const sql = "INSERT INTO aplikoperpune (lokacioni,departamenti,orari,idStudent) VALUES (?)";
                               const values = [ 
                                   req.body.lokacioni,
-                                  req.body.semestri,
+                                  req.body.departamenti,
                                   req.body.orari,
                                   req.body.idStudent
 
@@ -253,10 +253,10 @@ app.post('/signup', (req, res) => {
                                })})
               
                    app.put('/update/:id', (req, res) => {
-                    const sql = "UPDATE semestri set lokacioni = ?, semestri = ?,orari = ? WHERE id = ?";
+                    const sql = "UPDATE aplikoperpune set lokacioni = ?, departamenti = ?,orari = ? WHERE id = ?";
                     const values = [ 
                              req.body.lokacioni,
-                             req.body.semestri,
+                             req.body.departamenti,
                              req.body.orari
                                ] 
                        const id = req.params.id;
@@ -264,7 +264,7 @@ app.post('/signup', (req, res) => {
                                           if(err) return res.json("Error");
                                            return res.json(data);    })})
                                     app.delete('/aplikoPerPune/:id', (req, res) => { 
-                                      const sql = "DELETE FROM semestri WHERE id = ?";
+                                      const sql = "DELETE FROM aplikoperpune WHERE id = ?";
                                       const id = req.params.id;
                                       db.query(sql, [id], (err, data) => { 
                                           if(err) return res.json("Error"); 

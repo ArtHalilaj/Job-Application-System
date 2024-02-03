@@ -15,7 +15,7 @@ import facebook from './facebook.png'
 
 
 function PunedhenesitUser() {
-    const [perzgjedhjagrupit, setPerzgjedhjagrupit] = useState([])
+    const [punedhenesit, setPunedhenesit] = useState([])
     
     const[role,setRole]=useState('')
     const navigate=useNavigate()
@@ -35,7 +35,7 @@ function PunedhenesitUser() {
 
     useEffect(()=> {
         axios.get('http://localhost:8081/perzgjedhjagrupit')
-        .then(res => setPerzgjedhjagrupit(res.data))
+        .then(res => setPunedhenesit(res.data))
          .catch(err => console.log(err)); 
          },[])
 
@@ -62,7 +62,7 @@ function PunedhenesitUser() {
               <br></br>
               <div className="card-buttons">
               <a className='Aja' href='/aplikoPerPune'>Apliko</a>
-              <a className='Aja' href='/https://www.microsoft.com/en-us/'>Visito</a>
+              <a className='Aja' href='https://www.microsoft.com/en-us/'>Visito</a>
               </div>
             </div>
           </div>
@@ -79,7 +79,7 @@ function PunedhenesitUser() {
               <br></br>
               <div className="card-buttons">
               <a className='Aja' href='/aplikoPerPune'>Apliko</a>
-              <a className='Aja' href='/'>Visito</a>
+              <a className='Aja' href='https://about.google/'>Visito</a>
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@ function PunedhenesitUser() {
               <br></br>
               <div className="card-buttons">
               <a className='Aja' href='/aplikoPerPune'>Apliko</a>
-              <a className='Aja' href='/'>Visito</a>
+              <a className='Aja' href='https://www.facebook.com'>Visito</a>
               </div>
             </div>
           </div>

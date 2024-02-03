@@ -13,7 +13,7 @@ import Visitor from './Visitor'
 
 
 function PublikoPuneUser() {
-    const [paraqitProvimin, setParaqitProvimin] = useState([])
+    const [publikopune, setPublikoPune] = useState([])
     
     const[role,setRole]=useState('')
     const navigate=useNavigate()
@@ -33,13 +33,13 @@ function PublikoPuneUser() {
 
     useEffect(()=> {
         axios.get('http://localhost:8081/publikoPunen')
-        .then(res => setParaqitProvimin(res.data))
+        .then(res => setPublikoPune(res.data))
          .catch(err => console.log(err)); 
          },[])
 
-    const handleDelete = async (idProvimi) => { 
+    const handleDelete = async (idPublikimi) => { 
         try { 
-         await axios.delete('http://localhost:8081/publikoPunen/'+idProvimi)
+         await axios.delete('http://localhost:8081/publikoPunen/'+idPublikimi)
          window.location.reload() 
         }catch(err) {  
          console.log(err);   
@@ -63,16 +63,16 @@ function PublikoPuneUser() {
                           </thead>  
                           <tbody> 
                              { 
-                              paraqitProvimin.map((data, i)=> ( 
+                              publikopune.map((data, i)=> ( 
                                  <tr style={{textAlign:"center",color:"white"}} key={i}> 
-                                  <td>{data.lenda}</td>
-                                   <td>{data.emriProfesorit}</td> 
+                                  <td>{data.departamenti}</td>
+                                   <td>{data.profesioni}</td> 
                                    <td> 
 
                                   
 
 
-                                   <button style={{width:"100%",backgroundColor:"#ff5858",color:"white",fontWeight:"bold",border:"1px solid #ff5858",margin:"0"}} class="butoni2" onClick={ e => handleDelete(data.idProvimi)}>Largo Publikimin</button>
+                                   <button style={{width:"100%",backgroundColor:"#ff5858",color:"white",fontWeight:"bold",border:"1px solid #ff5858",margin:"0"}} class="butoni2" onClick={ e => handleDelete(data.idPublikimi)}>Largo Publikimin</button>
                                    </td>
                                     </tr> 
                               )) 

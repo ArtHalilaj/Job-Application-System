@@ -13,7 +13,7 @@ import Visitor from './Visitor'
 
 
 function PublikoPuneAdmin() {
-    const [paraqitProvimin, setParaqitProvimin] = useState([])
+    const [publikopune, setPublikoPune] = useState([])
     
     const[role,setRole]=useState('')
     const navigate=useNavigate()
@@ -33,13 +33,13 @@ function PublikoPuneAdmin() {
 
     useEffect(()=> {
         axios.get('http://localhost:8081/publikoPunen')
-        .then(res => setParaqitProvimin(res.data))
+        .then(res => setPublikoPune(res.data))
          .catch(err => console.log(err)); 
          },[])
 
-    const handleDelete = async (idProvimi) => { 
+    const handleDelete = async (idPublikimi) => { 
         try { 
-         await axios.delete('http://localhost:8081/publikoPunen/'+idProvimi)
+         await axios.delete('http://localhost:8081/publikoPunen/'+idPublikimi)
          window.location.reload() 
         }catch(err) {  
          console.log(err);   
@@ -64,17 +64,17 @@ function PublikoPuneAdmin() {
                           </thead>  
                           <tbody> 
                              { 
-                              paraqitProvimin.map((data, i)=> ( 
+                              publikopune.map((data, i)=> ( 
                                  <tr style={{textAlign:"center",color:"white"}} key={i}> 
-                                  <td>{data.lenda}</td>
-                                   <td>{data.emriProfesorit}</td> 
-                                   <td>{data.nota}</td> 
+                                  <td>{data.departamenti}</td>
+                                   <td>{data.profesioni}</td> 
+                                   <td>{data.kerkesa}</td> 
                                    <td> 
 
-                                   <Link style={{width:"30%",backgroundColor:"#24a0ed",color:"white",border:"1px solid #24a0ed "}} to={`update/${data.idProvimi}`} class='butoni'>Update </Link>&nbsp;
+                                   <Link style={{width:"30%",backgroundColor:"#24a0ed",color:"white",border:"1px solid #24a0ed "}} to={`update/${data.idPublikimi}`} class='butoni'>Update </Link>&nbsp;
 
 
-                                   <button style={{width:"40%",backgroundColor:"#ff5858",color:"white",fontWeight:"bold",border:"1px solid #ff5858",margin:"0"}} class="butoni2" onClick={ e => handleDelete(data.idProvimi)}>Delete</button>
+                                   <button style={{width:"40%",backgroundColor:"#ff5858",color:"white",fontWeight:"bold",border:"1px solid #ff5858",margin:"0"}} class="butoni2" onClick={ e => handleDelete(data.idPublikimi)}>Delete</button>
                                    </td>
                                     </tr> 
                               )) 

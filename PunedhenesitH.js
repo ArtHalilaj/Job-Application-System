@@ -19,7 +19,7 @@ import Punedhenesit from './Punedhenesit'
 
 
 function PunedhenesitH() {
-    const [perzgjedhjagrupit, setPerzgjedhjagrupit] = useState([])
+    const [punedhenesit, setPunedhenesit] = useState([])
     
     const[role,setRole]=useState('')
     const navigate=useNavigate()
@@ -39,7 +39,7 @@ function PunedhenesitH() {
 
     useEffect(()=> {
         axios.get('http://localhost:8081/perzgjedhjagrupit')
-        .then(res => setPerzgjedhjagrupit(res.data))
+        .then(res => setPunedhenesit(res.data))
          .catch(err => console.log(err)); 
          },[])
 

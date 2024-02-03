@@ -6,11 +6,12 @@ import { Link,useNavigate } from 'react-router-dom'
 
 
   function AplikoPerPune() {
-    const [regjistrosemestrin, setRegjistroSemestrin] = useState([])
+    const [aplikoPerPune, setAplikoPerPune] = useState([])
+
 
     const [idStudent, setIdStudent] = useState('') 
       const [lokacioni, setLokacioni] = useState('') 
-      const [semestri, setSemestri] = useState('') 
+      const [departamenti, setDepartamenti] = useState('') 
       const [orari, setOrari] = useState('') 
       const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ import { Link,useNavigate } from 'react-router-dom'
        
       function handleSubmit(event) {
           event.preventDefault(); 
-            axios.post('http://localhost:8081/createSemestri',{lokacioni,semestri,orari,idStudent})
+            axios.post('http://localhost:8081/createAplikoPerPune',{lokacioni,departamenti,orari,idStudent})
             .then(res => {
               console.log(res);
               navigate('/aplikoPerPune'); 
@@ -45,19 +46,23 @@ import { Link,useNavigate } from 'react-router-dom'
       
           useEffect(()=> {
               axios.get('http://localhost:8081/aplikoPerPune')
-              .then(res => setRegjistroSemestrin(res.data))
+              .then(res => setAplikoPerPune(res.data))
                .catch(err => console.log(err)); 
                },[])
       
-          const handleDelete = async (id) => { 
+          const handleDelete = async(id) => { 
               try { 
                await axios.delete('http://localhost:8081/aplikoPerPune/'+id)
                window.location.reload() 
+               
               }catch(err) {  
                console.log(err);   
+
               }   
            
       }  
+
+   
 
     
 
@@ -93,11 +98,11 @@ import { Link,useNavigate } from 'react-router-dom'
                 <div className='mb-2'> 
               <label htmlFor=""> <strong> Departamenti : </strong></label> 
               {/* <input type="text" placeholder='Enter Name' class="inp" onChange={e => setName(e.target.value)}/> */}
-              <select value={semestri} name='lenda' onChange={e => setSemestri(e.target.value)}>
+              <select value={departamenti} name='lenda' onChange={e => setDepartamenti(e.target.value)}>
               <option >Zgjedh Departamentin</option>
-              <option value="Lab 1">Shkenca Kompjuterike dhe inxhinier</option>
-             <option value="Algoritme">Arkitektur</option>
-             <option value="Shkenca Kompjuterike 2">Mekatronike</option>
+              <option value="Shkenca Kompjuterike dhe inxhinier">Shkenca Kompjuterike dhe inxhinier</option>
+             <option value="Arkitektur">Arkitektur</option>
+             <option value="Mekatronike">Mekatronike</option>
               
   </select>
             
@@ -148,10 +153,10 @@ import { Link,useNavigate } from 'react-router-dom'
                           </thead>  
                           <tbody> 
                              { 
-                              regjistrosemestrin.map((data, i)=> ( 
+                              aplikoPerPune.map((data, i)=> ( 
                                  <tr style={{textAlign:"center",color:"white"}} key={i}> 
                                   <td>{data.lokacioni}</td>
-                                   <td>{data.semestri}</td> 
+                                   <td>{data.departamenti}</td> 
                                    <td>{data.orari}</td> 
                                    <td> 
 

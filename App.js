@@ -19,6 +19,9 @@ import Perzgjedhjagrupit from './PunedhenesitH.js';
 import ParaqitProvimin from './PublikoPunen.js';
 import CreateProvimin from './CreatePunen.js';
 import Profile from './Profile';
+import UpdatePublikimin from './UpdatePublikimin.js';
+import AplikoPerPune from './AplikoPerPune.js';
+import CreatePunen from './CreatePunen.js';
 
 
 
@@ -33,7 +36,7 @@ const App = () => {
     <BrowserRouter>
       <Sidebar>
         <Routes>
-        <Route path='/createPunen' element={<CreateProvimin />}></Route>
+        <Route path='/createPunen' element={<CreatePunen />}></Route>
         <Route path="/login" element={<Login />} />
         <Route path="/about/get/Regjistro/:email" element={<Visitor />} />
         <Route path="/signup" element={<Signup />} />
@@ -42,9 +45,10 @@ const App = () => {
           <Route path="/punedhenesit" element={<Perzgjedhjagrupit />} />
           <Route path="/analytics" element={<RegjistroSemestrin />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/aplikoPerPune" element={<RegjistroSemestrin />} />
-          <Route path="/createSemestri" element={<RegjistroSemestrin />} />
+          <Route path="/aplikoPerPune" element={<AplikoPerPune />} />
+          <Route path="/createAplikoPerPune" element={<AplikoPerPune />} />
           <Route path="/publikoPunen" element={<ParaqitProvimin />} />
+          <Route path="/publikoPunen/update/:idPublikimi" element={<UpdatePublikimin />} />
           <Route path="/logout" element={<Logout />} />
         </Routes>
       </Sidebar>
